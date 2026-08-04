@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text-primary: #070a0e;
+  --text-secondary: #4a4c4f;
+  --bg-primary: #ffffff;
+  --bg-surface: #fafafa;
+  --bg-subtle: #f0f0f1;
+  --brand: #115acb;
+}
+
+* {
+  box-sizing: border-box;
+}
