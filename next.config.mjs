@@ -50,6 +50,17 @@ const nextConfig = {
   // instead, which works fine (verified directly with plain `require('pdf-parse')`).
   experimental: {
     serverComponentsExternalPackages: ['pdf-parse'],
+    // pdfjs-dist's Node "fake worker" dynamically requires its own worker file at
+    // runtime (not a static import), so Next's output file tracer — which Netlify's
+    // Next Runtime uses to decide what to include in each serverless function bundle
+    // — misses it entirely. Without this, PDF upload fails in production with
+    // "Cannot find module '.../pdfjs-dist/legacy/build/pdf.worker.mjs'" even though
+    // it works locally (nothing is bundled/traced for `next dev`/`next start`).
+    outputFileTracingIncludes: {
+      '/api/contracts': [
+        './node_modules/pdf-parse/node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs',
+      ],
+    },
   },
   async headers() {
     return [

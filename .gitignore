@@ -25,3 +25,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Netlify folder
+.netlify
+deno.lock
+
+# test artifacts
+/coverage
+/test-results
+/playwright-report

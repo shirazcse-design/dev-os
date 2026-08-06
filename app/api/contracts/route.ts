@@ -88,7 +88,8 @@ export async function POST(req: NextRequest) {
     const extracted = await extractTextWithPageMarkers(buffer)
     text = extracted.text
     pageCount = extracted.pageCount
-  } catch {
+  } catch (err) {
+    console.error('[contracts:POST] PDF extraction failed:', err)
     return badRequest('INVALID_FILE', 'This PDF could not be read. Please check the file and try again.')
   }
 
